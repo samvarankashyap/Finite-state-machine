@@ -13,7 +13,6 @@ class StateMachineParser:
 	def getAlpha(self):
 		return self.getFieldByName("alphabet")
 	def getTransitions(self):
-		#print self.filePath
 		transList = []		
 		for x in self.fields :
 			x1= x.split(":")
@@ -32,9 +31,9 @@ class StateMachineParser:
 	def getFieldByName(self,fieldName):
 		for line in self.fields:
 			temp = line.split(":")
-			#print temp
+			
 			category = temp[0].strip(" ")
-			#print category
+			
 			if fieldName == category :
 				return self.getFieldListByName(temp[1].strip(),"states")
 			if fieldName == category :
@@ -46,7 +45,7 @@ class StateMachineParser:
 			if temp[0] == category :
 				return self.getFieldListByName(temp[1],"states")
 			
-			
+
 	def getFieldListByName(self,fieldString,fieldName):
 		fieldList = []
 		elements = fieldString.split(" ")

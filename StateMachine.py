@@ -8,26 +8,19 @@ class StateMachine:
 
 	def setInitialState(self, initialState):
 		self.initialState = initialState
-		#print "initial state successfully initialised :P"
-		#print self.initialState
-
+		
 	def addFinalStates(self, finalStates):
 		self.__addListTo(finalStates,"finalStates")
-		#print "final states successfully initialised :P"
-		#print self.finalStates
-
+		
 	def addStates(self, states):
 		self.__addListTo(states,"states")
-		#print "States successfully initialised :P"
-		#print self.states
-
+		
 	def addAlphabet(self, alphabet):
 		self.__addListTo(alphabet,"alphabet")
 
 	def addTransitions(self, transitions):
 		self.__addListTo(transitions,"transitions")
-		#print "Transitions successfully initialised :P"
-		#print self.transitions
+		
 	def __addListTo(self, list, nameOfList):
 		if nameOfList == "finalStates":
 			for temp in list:
@@ -69,15 +62,10 @@ class StateMachine:
 		transitionFlow.append(self.getInitialState())
 		for c in inputString :
 			nextState = self.getNextTransition(currentState,c)
-			#print nextState
 			if nextState == None :
-				#print "transition stopped at "
 				return transitionFlow[-1]
 			currentState = nextState
 			transitionFlow.append(nextState)
-		#print currentState
-		#print transitionFlow
-		#return transitionFlow
 		return currentState
 
 	def isFinalState(self, someState):
