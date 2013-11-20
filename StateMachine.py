@@ -90,8 +90,10 @@ class StateMachine:
 
 	def getNextTransition(self, currentState, letter):
 		for t in self.transitions:
-			if t[0]+t[1] == currentState+letter:
-				return t[2]
+			t1 = t.split(" ")
+			if t1[0] == currentState and t1[1] == letter :
+				return t1[2]
+
 					
 
 

@@ -4,7 +4,7 @@ s = StateMachine.StateMachine()
 s.setInitialState("1")
 finalstates = ["5"]
 states = ["1","2","3","4","5"]
-transitions = ["1a2","1b2","2a2","2b1","2c3","3a4","3c5","4a5","4b3"]
+transitions = ["1 a 2","1 b 2","2 a 2","2 b 1","2 c 3","3 a 4","3 c 5","4 a 5","4 b 3"]
 alphabet =["a","b","c"]
 s.addFinalStates(finalstates)
 s.addStates(states)
@@ -17,4 +17,4 @@ s.addTransitions(transitions)
 #print "should print 2 ::::",s.getNextTransition("1","x")
 #print "start transition function,\ntrainsition ends at ", s.startTransition("abcc","1")
 print "start statemachine : "
-s.stateMachineStart("xaac")
+s.stateMachineStart("aaccc")
