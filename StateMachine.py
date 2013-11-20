@@ -1,4 +1,8 @@
+
+
 class StateMachine:
+	
+
 	def __init__(self):
 		self.initialState = []
 		self.finalStates = []
@@ -31,7 +35,7 @@ class StateMachine:
 		elif nameOfList == "alphabet":
 			for temp in list:
 				(self.alphabet).append(temp)
-		else :
+		else:
 			for temp in list:
 				(self.transitions).append(temp)
 
@@ -39,30 +43,28 @@ class StateMachine:
 		return self.initialState[0]
 
 	def stateMachineStart(self, inputString):
-		if (self.validateValues()):
+		if(self.validateValues()):
 			currentState = self.getInitialState()
 			finalTransitionState = self.startTransition(inputString,currentState) #  should give final transtition state 
 			if(self.isFinalState(finalTransitionState)):
 				print "Final State Reached ... Transition stopped at "+finalTransitionState
-			else : 
+			else: 
 				print "Invalid String Transition stopped at "+str(finalTransitionState)
-		else :
+		else:
 			print "object values are not initialised properly ....."
 
-
 	def validateValues(self):
-		if (len(self.initialState) == 0 or len(self.alphabet) == 0 or len(self.transitions) == 0):
+		if(len(self.initialState) == 0 or len(self.alphabet) == 0 or len(self.transitions) == 0):
 			return False
 		else :
 			return True
-
  
 	def startTransition(self, inputString, currentState):
 		transitionFlow = []
 		transitionFlow.append(self.getInitialState())
-		for c in inputString :
+		for(c in inputString):
 			nextState = self.getNextTransition(currentState,c)
-			if nextState == None :
+			if(nextState == None):
 				return transitionFlow[-1]
 			currentState = nextState
 			transitionFlow.append(nextState)
@@ -75,11 +77,10 @@ class StateMachine:
 				isFinal = True
 		return isFinal
 
-
 	def getNextTransition(self, currentState, letter):
 		for t in self.transitions:
 			t1 = t.split(" ")
-			if t1[0] == currentState and t1[1] == letter :
+			if(t1[0] == currentState and t1[1] == letter):
 				return t1[2]
 
 					
