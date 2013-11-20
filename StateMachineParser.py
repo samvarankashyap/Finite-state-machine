@@ -8,16 +8,16 @@ class StateMachineParser:
 		self.fields = self.file_descriptor.readlines()		
 		#print self.fields
 	
-	def getAll(self):
-		print self.getAlpha()
-		print self.getTransitions()
+	def get_all(self):
+		print self.get_alpha()
+		print self.get_transitions()
 		print self.getIntialState()
-		print self.getFinalState()
+		print self.get_final_state()
 
-	def getAlpha(self):
-		return self.getFieldByName("alphabet")
+	def get_alpha(self):
+		return self.get_field_by_name("alphabet")
 	
-	def getTransitions(self):
+	def get_transitions(self):
 		transList = []		
 		for x in self.fields:
 			x1= x.split(":")
@@ -25,24 +25,24 @@ class StateMachineParser:
 				transList.append(x1[1].strip())
 		return transList
 	
-	def getStates(self):
-		return self.getFieldByName("states")
+	def get_states(self):
+		return self.get_field_by_name("states")
 	
-	def getInitialState(self):
-		return self.getFieldByName("initial")
+	def get_initial_state(self):
+		return self.get_field_by_name("initial")
 		
-	def getFinalState(self):
-		return self.getFieldByName("final")
+	def get_final_state(self):
+		return self.get_field_by_name("final")
 			
-	def getFieldByName(self, fieldName):
+	def get_field_by_name(self, fieldName):
 		for line in self.fields:
 			temp = line.split(":")
 			category = temp[0].strip(" ")
 			if fieldName == category:
-				return self.getFieldListByName(temp[1].strip(),fieldName)
+				return self.get_field_list_by_name(temp[1].strip(),fieldName)
 
 			
-	def getFieldListByName(self, fieldString, fieldName):
+	def get_field_list_by_name(self, fieldString, fieldName):
 		fieldList = []
 		elements = fieldString.split(" ")
 		for e in elements:

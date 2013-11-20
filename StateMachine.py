@@ -10,20 +10,20 @@ class StateMachine:
 		self.alphabet = []
 		self.transitions = []
 
-	def setInitialState(self, initialState):
+	def set_initial_state(self, initialState):
 		self.initialState = initialState
 		
-	def addFinalStates(self, finalStates):
-		self.__addListTo(finalStates,"finalStates")
+	def add_final_states(self, finalStates):
+		self.__addListTo(finalStates, "finalStates")
 		
-	def addStates(self, states):
-		self.__addListTo(states,"states")
+	def add_states(self, states):
+		self.__addListTo(states, "states")
 		
-	def addAlphabet(self, alphabet):
-		self.__addListTo(alphabet,"alphabet")
+	def add_alphabet(self, alphabet):
+		self.__addListTo(alphabet, "alphabet")
 
-	def addTransitions(self, transitions):
-		self.__addListTo(transitions,"transitions")
+	def add_transitions(self, transitions):
+		self.__addListTo(transitions, "transitions")
 		
 	def __addListTo(self, list, nameOfList):
 		if nameOfList == "finalStates":
@@ -39,45 +39,45 @@ class StateMachine:
 			for temp in list:
 				(self.transitions).append(temp)
 
-	def getInitialState(self):
+	def get_initial_state(self):
 		return self.initialState[0]
 
-	def stateMachineStart(self, inputString):
-		if(self.validateValues()):
-			currentState = self.getInitialState()
-			finalTransitionState = self.startTransition(inputString,currentState) #  should give final transtition state 
-			if(self.isFinalState(finalTransitionState)):
+	def state_machine_start(self, inputString):
+		if(self.validate_values()):
+			currentState = self.get_initial_state()
+			finalTransitionState = self.start_transition(inputString, currentState) #  should give final transtition state 
+			if(self.is_final_state(finalTransitionState)):
 				print "Final State Reached ... Transition stopped at "+finalTransitionState
 			else: 
 				print "Invalid String Transition stopped at "+str(finalTransitionState)
 		else:
 			print "object values are not initialised properly ....."
 
-	def validateValues(self):
+	def validate_values(self):
 		if(len(self.initialState) == 0 or len(self.alphabet) == 0 or len(self.transitions) == 0):
 			return False
 		else :
 			return True
  
-	def startTransition(self, inputString, currentState):
+	def start_transition(self, inputString, currentState):
 		transitionFlow = []
-		transitionFlow.append(self.getInitialState())
-		for(c in inputString):
-			nextState = self.getNextTransition(currentState,c)
+		transitionFlow.append(self.get_initial_state())
+		for c in inputString:
+			nextState = self.get_next_transition(currentState,c)
 			if(nextState == None):
 				return transitionFlow[-1]
 			currentState = nextState
 			transitionFlow.append(nextState)
 		return currentState
 
-	def isFinalState(self, someState):
+	def is_final_state(self, someState):
 		isFinal = False
 		for state in self.finalStates:
 			if someState == state:
 				isFinal = True
 		return isFinal
 
-	def getNextTransition(self, currentState, letter):
+	def get_next_transition(self, currentState, letter):
 		for t in self.transitions:
 			t1 = t.split(" ")
 			if(t1[0] == currentState and t1[1] == letter):
