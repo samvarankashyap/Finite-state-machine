@@ -1,5 +1,3 @@
-
-
 class StateMachine:
 	
 
@@ -42,11 +40,12 @@ class StateMachine:
 	def get_initial_state(self):
 		return self.initialState[0]
 
-	def state_machine_start(self, inputString):
-		if(self.validate_values()):
-			currentState = self.get_initial_state()
+	def state_machine_start(self, inputString): 
+		#starting the state machine with the input string
+		if(self.validate_values()): #verifies whether the object is properly intialised or not 
+			currentState = self.get_initial_state() # stores initial state 
 			finalTransitionState = self.start_transition(inputString, currentState) #  should give final transtition state 
-			if(self.is_final_state(finalTransitionState)):
+			if(self.is_final_state(finalTransitionState)): #checking whether the final state reached is in set of final states or not
 				print "Final State Reached ... Transition stopped at "+finalTransitionState
 			else: 
 				print "Invalid String Transition stopped at "+str(finalTransitionState)

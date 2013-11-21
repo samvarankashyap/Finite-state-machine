@@ -31,7 +31,7 @@ class StateMachineParser:
 	def get_initial_state(self):
 		return self.get_field_by_name("initial")
 		
-	def get_final_state(self):
+	def get_final_states(self):
 		return self.get_field_by_name("final")
 			
 	def get_field_by_name(self, fieldName):
