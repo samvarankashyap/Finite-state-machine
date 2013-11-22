@@ -2,19 +2,19 @@ import StateMachine
 import StateMachineParser
 
 class FiniteStateMachine:
-	def __init__(self,filePath):
-		self.filePath=filePath
+	def __init__(self,file_path):
+		self.file_path=file_path
 
 	def create_object(self):
 		sm = StateMachine.StateMachine()
-		smp = StateMachineParser.StateMachineParser(self.filePath)
-		initialstate = smp.get_initial_state()
-		finalstates = smp.get_final_states()
+		smp = StateMachineParser.StateMachineParser(self.file_path)
+		initial_state = smp.get_initial_state()
+		final_states = smp.get_final_states()
 		alphabet = smp.get_alpha()
 		transitions = smp.get_transitions()
 		states = smp.get_states()
-		sm.set_initial_state(initialstate)
-		sm.add_final_states(finalstates)
+		sm.set_initial_state(initial_state)
+		sm.add_final_states(final_states)
 		sm.add_states(states)
 		sm.add_alphabet(alphabet)
 		sm.add_transitions(transitions)
