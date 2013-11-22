@@ -5,9 +5,16 @@ class InvalidStateException(Exception):
 	def __init__(self, msg):
 		Exception.__init__(self, msg)
 
+
 class DuplicateStateException(Exception):
 	def __init__(self, msg):
 		Exception.__init__(self, msg)
+
+
+class NonExistentStateException(Exception):
+	def __init__(self, msg):
+		Exception.__init__(self, msg)
+
 
 class StateMachine:
 	
@@ -20,12 +27,13 @@ class StateMachine:
 		self.transitions = []
 
 	def set_initial_state(self, initial_state):
-		initial_state = initial_state.strip()
+		initial_state = str(initial_state).strip()
 		#print initial_state
 		if (self.is_valid_state(initial_state)):
 			raise InvalidStateException("This is Invalid state")
 		else:
 			self.initial_state = initial_state
+	
 	
 	def add_state(self,single_state):
 		single_state = str(single_state)
@@ -41,14 +49,49 @@ class StateMachine:
 					
 		self.states.append(single_state)
 		
-	def add_states(self,*args):
+	def add_states(self, *args):
 		args_list = self.args_to_list(args)
 		for a in args_list:
 			self.add_state(a)
 		
-	def add_final_states(self, final_states):
-		self.__addListTo(final_states, "final_states")
+	def remove_state(self, state):
+		if not self.does_state_exists(state,"states"):
+			raise NonExistentStateException("The State doesnt exists")
+		else:
+			self.states.remove(state)
+
+
+	def remove_states(self, *states):
+		state_list = self.args_to_list(states)
+		for s in state_list:
+			self.remove_state(s)
+
+	#def add_final_states(self, *final_states):
+	#	pass
+	#	self.__addListTo(final_states, "final_states")
 		
+	def add_final_states(self, *final_states):
+		final_states_list = self.args_to_list(final_states)
+		#print final_states_list
+		for fs in final_states_list:
+			if (self.does_state_exists(fs,"final")):
+				raise NonExistentStateException("This is an InvalidState")
+			else:
+				self.add_final_state(fs)
+		#print final_states_list
+
+	def add_final_state(self, final_state):
+		if (self.is_valid_state(final_state)):
+			raise NonExistentStateException("State non existing ")
+		else:
+			self.final_states.append(final_state)
+
+	def remove_final_state(self, *final_state):
+		pass		
+	
+	def remove_final_states(self, *final_states):
+		pass	
+
 	#def add_states(self, states):
 	#	self.__addListTo(states, "states")
 		

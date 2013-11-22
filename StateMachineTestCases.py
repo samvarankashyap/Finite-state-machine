@@ -14,9 +14,12 @@ import StateMachine
 """
 
 if __name__ == "__main__":
+    score = 0
+    total = 0
 
     def test_create_state_machine():
         """ Test if state machine is being created? """
+        total = total+1
         sm1 = StateMachine.StateMachine()
 
         # This is probably a bad way to do things.
@@ -24,46 +27,56 @@ if __name__ == "__main__":
            hasattr(sm1, "transitions") and hasattr(sm1, "alphabet") and \
            hasattr(sm1, "states"):
             print "Passed: test_create_state_machine()"
+            score =score + 1
         else:
             print "Failed: test_create_state_machine()"
 
     def test_add_state_1():
+        total = total+1
         """ Test if a state can be added """
         sm1 = StateMachine.StateMachine()
         sm1.add_state("  S1 ")
         if "S1" in sm1.states:
+            score =score + 1
             print "Passed: test_add_state_1()"
         else:
             print "Failed: test_add_state_1()"
 
     def test_add_state_2():
+        total = total+1
         """ Test if a state can be added """
         sm1 = StateMachine.StateMachine()
         sm1.add_state(1)    # Passing a number instead of a string
         if "1" in sm1.states:
+            score =score + 1
             print "Passed: test_add_state_2()"
         else:
             print "Failed: test_add_state_2()"
 
     def test_add_invalid_state_1():
+        total = total+1
         """ Test if a state can be added """
         sm1 = StateMachine.StateMachine()
         try:
             sm1.add_state("   ")
             print "Failed: test_add_invalid_state_1()"
         except InvalidStateException:
+            score =score + 1
             print "Passed: test_add_invalid_state_1()"
         
     def test_add_invalid_state_2():
+        total = total+1
         """ Test if a state can be added """
         sm1 = StateMachine.StateMachine()
         try:
             sm1.add_state(" !@#$  ")
             print "Failed: test_add_invalid_state_2()"
         except InvalidStateException:
+            score =score + 1
             print "Passed: test_add_invalid_state_2()"
 
     def test_add_duplicate_state():
+        total = total+1
         """ DuplicateStateException should occur if state has already been added  """
         sm1 = StateMachine.StateMachine()
         try:
@@ -71,19 +84,23 @@ if __name__ == "__main__":
             sm1.add_state("S2")
             print "Failed: test_add_duplicate_state()"
         except DuplicateStateException:
+            score =score + 1
             print "Passed: test_add_duplicate_state()"
 
     def test_add_states():
+        total = total+1
         """ Valid states should be added.  First invalid state should cause
          InvalidStateException """
         sm1 = StateMachine.StateMachine()
         sm1.add_states("S1", "S2", "S3")
         if "S1" in sm1.states and "S2" in sm1.states and "S3" in sm1.states:
+            score =score + 1
             print "Passed: test_add_states()"
         else:
             print "Failed: test_add_states()"
 
     def test_add_invalid_states():
+        total = total+1
         """ InvalidStateException should occur if state is blank or whitespace """
         sm1 = StateMachine.StateMachine()
         try:
@@ -91,6 +108,7 @@ if __name__ == "__main__":
             print "Failed: test_add_invalid_states()"
         except InvalidStateException:
             if "S1" in sm1.states:
+                score =score + 1
                 print "Passed: test_add_invalid_states()"
             else:
                 print "Failed: test_add_invalid_states()"
@@ -113,64 +131,77 @@ if __name__ == "__main__":
         pass
 
     def test_set_initial_state_0():
+        total = total+1
         """ Should allow setting initial state """
         sm1 = StateMachine.StateMachine()
         sm1.add_state("0")
         sm1.set_initial_state("0")
         if sm1.initial_state == "0":
+            score =score + 1
             print "Passed: test_set_initial_state_0()"
         else:
             print "Failed: test_set_initial_state_0()"
 
     def test_set_initial_state_1():
+        total = total+1
         """ Should allow setting initial state """
         sm1 = StateMachine.StateMachine()
         sm1.add_state("State1")
         sm1.set_initial_state("State1")
         if sm1.initial_state == "State1":
+            score =score + 1
             print "Passed: test_set_initial_state_1()"
         else:
             print "Failed: test_set_initial_state_1()"
 
     def test_set_initial_state_2():
+        total = total+1
         """ Should allow setting initial state """
         sm1 = StateMachine.StateMachine()
         sm1.add_state("2")
         sm1.set_initial_state(" 2   ")
         if sm1.initial_state == "2":
+            score =score + 1
             print "Passed: test_set_initial_state_2()"
         else:
             print "Failed: test_set_initial_state_2()"
 
     def test_set_initial_state_3():
+        total = total+1
         """ Should allow setting initial state """
         sm1 = StateMachine.StateMachine()
         sm1.add_state("State1")
         sm1.set_initial_state(" State1   ")
         if sm1.initial_state == "State1":
+            score =score + 1
             print "Passed: test_set_initial_state_3()"
         else:
             print "Failed: test_set_initial_state_3()"
 
     def test_set_invalid_initial_state_1():
+        total = total+1
         """ Should allow setting initial state """
         sm1 = StateMachine.StateMachine()
         try:
             sm1.set_initial_state("   ")
             print "Failed: test_set_invalid_initial_state_1()"
         except InvalidStateException, e:
+            score =score + 1
             print "Passed: test_set_invalid_initial_state_1()"
 
     def test_set_invalid_initial_state_2():
+        total = total+1
         """ Should allow setting initial state """
         sm1 = StateMachine.StateMachine()
         try:
             sm1.set_initial_state(" 1 2  ")
             print "Failed: test_set_invalid_initial_state_2()"
         except InvalidStateException, e:
+            score =score + 1
             print "Passed: test_set_invalid_initial_state_2()"
 
     def test_set_duplicate_initial_state():
+        total = total+1
         """ Should raise exception if initial state already set """
         pass
 
@@ -212,7 +243,7 @@ if __name__ == "__main__":
         test_set_initial_state_2()
         test_set_invalid_initial_state_1()
         test_set_invalid_initial_state_2()
-
+        print "your score is ",(score/total )*100
     except Exception as e:
         print e.message
 
